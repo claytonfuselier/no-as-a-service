@@ -21,6 +21,11 @@ const limiter = rateLimit({
 
 app.use(limiter);
 
+// Redirect root path to GitHub
+app.get('/', (req, res) => {
+  res.redirect('https://github.com/claytonfuselier/no-as-a-service');
+});
+
 // Random rejection reason endpoint
 app.get('/no', (req, res) => {
   const reason = reasons[Math.floor(Math.random() * reasons.length)];
