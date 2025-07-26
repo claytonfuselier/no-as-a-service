@@ -26,6 +26,8 @@ The API returns a JSON with your random rejection reason. That’s it—simple, 
 ### 📱 Use an iOS/Apple "Shortcut"
 This shortcut calls the API and gives you the rejection reason in an alert popup.
 
+<img src="assets/imgs/ios-shortcut-actions.png" width="250" alt="App screenshot"> <img src="assets/imgs/ios-shortcut-alert.png" width="250" alt="App screenshot">
+
 1. From your iPhone, get the shortcut at [/assets/ios-shortcut/NaaS-v1.shortcut](assets/ios-shortcut/NaaS-v1.shortcut).
 2. Tap "Add Shortcut"
    - After adding, you can edit the bookmark to review it or "Add to Home Screen".
