@@ -1,5 +1,11 @@
 # 📝 Changelog
 
+## v1.2.0.1
+- Reorganized repository contents. Main package/app related files are now in `/naas`
+- Add details to README.md about using the API with iOS Shortcuts
+   - Uploaded `assets/ios/NaaS.shortcut` for quick adding.
+- Added LICENSE.md
+
 ## v1.2
 - Introduction of Dev docker image
 - GitHub Action for docker publishing
