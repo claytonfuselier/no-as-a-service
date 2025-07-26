@@ -3,8 +3,8 @@ name: Build and Publish Docker image
 on:
   push:
     branches:
-      - main           # Automatically trigger on push to main
-  workflow_dispatch:     # Allow manual trigger (e.g., for dev)
+      - main           # Only auto-build on push to main
+  workflow_dispatch:    # Allow manual build for any branch
 
 jobs:
   build:
@@ -32,11 +32,8 @@ jobs:
 
           if [[ "$BRANCH_NAME" == "main" ]]; then
             echo "tag=latest" >> $GITHUB_OUTPUT
-          elif [[ "$BRANCH_NAME" == "dev" ]]; then
-            echo "tag=dev" >> $GITHUB_OUTPUT
           else
-            echo "Unsupported branch: $BRANCH_NAME"
-            exit 1
+            echo "tag=dev" >> $GITHUB_OUTPUT
           fi
 
       - name: Build Docker image
