@@ -7,7 +7,7 @@ Wish you could reject requests with more flair, creativity, or sarcasm?
 <br>
 
 ## 🌐 Public API Endpoint
-### 🧪 Try It
+### 🧪 Try it Live
 - https://naas.debugme.dev/no  
 - `GET https://naas.debugme.dev/no`
 
@@ -23,10 +23,10 @@ The API returns a JSON with your random rejection reason. That’s it—simple, 
 
 <br>
 
-### 📱 Add an iOS "Shortcut"
+### 📱 Use an iOS/Apple "Shortcut"
 This shortcut calls the API and gives you the rejection reason in an alert popup.
 
-1. From your iPhone, get the shortcut [here](https://www.icloud.com/shortcuts/fd0bea5c12804c1bb6f91453ecc4e714).
+1. From your iPhone, get the shortcut at [/assets/ios-shortcut/NaaS-v1.shortcut](assets/ios-shortcut/NaaS-v1.shortcut).
 2. Tap "Add Shortcut"
    - After adding, you can edit the bookmark to review it or "Add to Home Screen".
   
