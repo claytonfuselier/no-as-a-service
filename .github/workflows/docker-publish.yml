@@ -35,7 +35,7 @@ jobs:
           elif [[ "$BRANCH_NAME" == "dev" ]]; then
             echo "tag=dev" >> $GITHUB_OUTPUT
           else
-            echo "❌ Unsupported branch: $BRANCH_NAME"
+            echo "Unsupported branch: $BRANCH_NAME"
             exit 1
           fi
 
