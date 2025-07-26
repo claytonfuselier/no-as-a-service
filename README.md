@@ -1,24 +1,38 @@
-# ❌ No-as-a-Service (Docker)
+# No-as-a-Service
 Ever get tired of saying "no"?  
 Wish you could reject requests with more flair, creativity, or sarcasm?
 
-**No-as-a-Service** delivers random, witty, and often hilarious ways to reject requests—perfect for spicing up rejections in your applications, bots, or daily life. Just because you're declining doesn't mean it has to be boring!
+**No-as-a-Service** delivers random, witty, and often hilarious ways to reject requests—perfect for spicing up rejections in your applications, bots, or daily life. Just because you're declining, doesn't mean it has to be boring!
 
 <br>
 
 ## 🌐 Public API Endpoint
-Use the service here:  
-https://naas.debugme.dev/no
+### 🧪 Try It
+- https://naas.debugme.dev/no  
+- `GET https://naas.debugme.dev/no`
 
 The API returns a JSON with your random rejection reason. That’s it—simple, fast, and ready to help you reject anything.
 
-### 🧪 Example Response
+#### Example Response
 ```
 {
    "reason": "I ran this request through my internal compliance, and it failed."
 }
 ```
 *Rate limited: 120 requests per minute per IP*
+
+<br>
+
+### 📱 Add an iOS "Shortcut"
+This shortcut calls the API and gives you the rejection reason in an alert popup.
+
+1. From your iPhone, get the shortcut [here](https://www.icloud.com/shortcuts/fd0bea5c12804c1bb6f91453ecc4e714).
+2. Tap "Add Shortcut"
+   - After adding, you can edit the bookmark to review it or "Add to Home Screen".
+  
+*Note:*
+- *[Shortcuts](https://support.apple.com/guide/shortcuts/welcome/ios) is an Apple app that lets you automate tasks across apps and system functions using custom or prebuilt workflows.*
+- *Available for iOS 12+ (Installed by default on iOS 13+)*
 
 <br>
 
