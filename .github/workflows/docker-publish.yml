@@ -2,8 +2,9 @@ name: Build and Publish Docker image
 
 on:
   push:
-    branches: [main]  # or your desired branch
-  workflow_dispatch:
+    branches:
+      - main           # Automatically trigger on push to main
+  workflow_dispatch:     # Allow manual trigger (e.g., for dev)
 
 jobs:
   build:
@@ -24,10 +25,24 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Set image tag based on branch
+        id: tag
+        run: |
+          BRANCH_NAME="${GITHUB_REF##*/}"
+
+          if [[ "$BRANCH_NAME" == "main" ]]; then
+            echo "tag=latest" >> $GITHUB_OUTPUT
+          elif [[ "$BRANCH_NAME" == "dev" ]]; then
+            echo "tag=dev" >> $GITHUB_OUTPUT
+          else
+            echo "❌ Unsupported branch: $BRANCH_NAME"
+            exit 1
+          fi
+
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/${{ github.repository }}:latest .
+          docker build -t ghcr.io/${{ github.repository }}:${{ steps.tag.outputs.tag }} .
 
       - name: Push Docker image
         run: |
-          docker push ghcr.io/${{ github.repository }}:latest
+          docker push ghcr.io/${{ github.repository }}:${{ steps.tag.outputs.tag }}
