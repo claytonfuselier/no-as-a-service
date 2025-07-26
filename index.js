@@ -4,20 +4,30 @@ const fs = require('fs');
 
 const app = express();
 app.set('trust proxy', true);
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000; // Fallback to port 3000
 
 // Load reasons from JSON
 const reasons = JSON.parse(fs.readFileSync('./reasons.json', 'utf-8'));
 
-// Rate limiter: 120 requests per minute per IP
+// Rate limiter: 120 requests per 60sec per IP
+const RATE_LIMIT_MAX = 120;
+const RATE_LIMIT_WINDOW_SEC = 60;
 const limiter = rateLimit({
-  windowMs: 60 * 1000, // 1 minute
-  max: 120,
+  windowMs: RATE_LIMIT_WINDOW_SEC * 1000, // Convert to ms
+  max: RATE_LIMIT_MAX,
   keyGenerator: (req, res) => {
-    return req.headers['cf-connecting-ip'] || req.ip; // Fallback if header missing (or for non-CF)
+    return req.headers['cf-connecting-ip'] || req.ip; // Fallback if CF header is missing (or for non-CloudFlare connections)
   },
-  message: { error: "Too many requests, please try again later. (120 reqs/min/IP)" }
+  standardHeaders: true, // Includes standardized RateLimit-* headers (RFC-compliant)
+  legacyHeaders: false, // Removes outdated headers like X-RateLimit-*
+  handler: (req, res) => {
+    res.json({
+      error: `Too many requests. (${RATE_LIMIT_MAX}/${RATE_LIMIT_WINDOW_SEC}sec/ip)`
+    });
+  }
 });
+
+
 
 app.use(limiter);
 
