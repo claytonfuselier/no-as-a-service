@@ -1,10 +1,13 @@
 # 📝 Changelog
 
-## v1.1.1
-- Introduction of Dev image
-- Modified GitHub Action for docker publishing
+## v1.2
+- Introduction of Dev docker image
+- GitHub Action for docker publishing
    - Branch "main" auto-publishes to "tag=latest"
    - Other branches can be manually published to "tag=dev"
+- Rate Limiter
+   - Enabled standardHeaders for RFC compliance
+   - Disbled legacyHeaders
 
 ## v1.1
 - Containerization of project for Docker
