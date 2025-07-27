@@ -7,7 +7,7 @@ Wish you could reject requests with more flair, creativity, or sarcasm?
 <br>
 
 ## 🌐 Public API Endpoint
-### 🧪 Try it Live
+### 🧪 Try It Live
 - https://naas.debugme.dev/no  
 - `GET https://naas.debugme.dev/no`
 
@@ -24,17 +24,12 @@ The API returns a JSON with your random rejection reason. That’s it—simple, 
 <br>
 
 ### 📱 Use an iOS/Apple "Shortcut"
-This shortcut calls the API and gives you the rejection reason in an alert popup.
+[Shortcuts](https://support.apple.com/guide/shortcuts/welcome/ios) is an Apple app that lets you automate tasks across apps and system functions using custom or prebuilt workflows.
 
-<img src="assets/imgs/ios-shortcut-actions.png" width="250" alt="App screenshot"> <img src="assets/imgs/ios-shortcut-alert.png" width="250" alt="App screenshot">
-
-1. From your iPhone, get the shortcut at [/assets/ios-shortcut/NaaS-v1.shortcut](assets/ios-shortcut/NaaS-v1.shortcut).
-2. Tap "Add Shortcut"
-   - After adding, you can edit the bookmark to review it or "Add to Home Screen".
-  
-*Note:*
-- *[Shortcuts](https://support.apple.com/guide/shortcuts/welcome/ios) is an Apple app that lets you automate tasks across apps and system functions using custom or prebuilt workflows.*
-- *Available for iOS 12+ (Installed by default on iOS 13+)*
+Build your own or use my prebuilt workflow below:
+1. From your iPhone or Mac, download [NaaS.shortcut](assets/ios-shortcut/NaaS-v1.shortcut).
+2. Open the file and select "Add Shortcut" when prompoted.
+   - After adding, you can edit the workflow to review it or "Add to Home Screen".
 
 <br>
 
@@ -66,7 +61,7 @@ docker run -p 8080:80 ghcr.io/claytonfuselier/no-as-a-service:latest
 ```
 Then access the API at: `http://localhost:8080/no`.
 
-You can also run locally using:
+You can also run it locally using:
 ```
 git clone https://github.com/claytonfuselier/no-as-a-service.git
 cd no-as-a-service
@@ -87,7 +82,7 @@ Add your own rejections to keep the API fresh and fun.
 
 ## 👤 Authors
 - [hotheadhacker](https://github.com/hotheadhacker) - Original concept and implementation
-- [claytonfuselier](https://github.com/claytonfuselier)
+- [claytonfuselier](https://github.com/claytonfuselier) - Docker containerization and personal styling
 
 <br>
 
