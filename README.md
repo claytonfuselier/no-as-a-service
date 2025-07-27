@@ -27,7 +27,7 @@ The API returns a JSON with your random rejection reason. That’s it—simple, 
 [Shortcuts](https://support.apple.com/guide/shortcuts/welcome/ios) is an Apple app that lets you automate tasks across apps and system functions using custom or prebuilt workflows.
 
 Build your own or use my prebuilt workflow below:
-1. From your iPhone or Mac, download [NaaS.shortcut](assets/ios/NaaS.shortcut).
+1. From your iPhone or Mac, download [NaaS.shortcut](https://github.com/claytonfuselier/no-as-a-service/raw/refs/heads/main/assets/ios/NaaS.shortcut).
 2. Open the file and select "Add Shortcut" when prompoted.
    - After adding, you can edit the workflow to review it or "Add to Home Screen".
 
