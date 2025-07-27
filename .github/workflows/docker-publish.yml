@@ -4,7 +4,13 @@ on:
   push:
     branches:
       - main           # Only auto-build on push to main
-  workflow_dispatch:    # Allow manual build for any branch
+    paths-ignore:      # Won't trigger workflow if only these files are edited
+      - '.github/**'
+      - 'assets/**'
+      - 'docs/**'
+      - '**/*.md'
+      
+  workflow_dispatch:   # Allow manual build for any branch
 
 jobs:
   build:
@@ -25,7 +31,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set image tag based on branch
+      - name: Set image tag based on branch    # /refs/heads/main goes to 'latest', all others go to 'dev'
         id: tag
         run: |
           BRANCH_NAME="${GITHUB_REF##*/}"

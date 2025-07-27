@@ -1,24 +1,35 @@
-# ❌ No-as-a-Service (Docker)
+# No-as-a-Service
 Ever get tired of saying "no"?  
 Wish you could reject requests with more flair, creativity, or sarcasm?
 
-**No-as-a-Service** delivers random, witty, and often hilarious ways to reject requests—perfect for spicing up rejections in your applications, bots, or daily life. Just because you're declining doesn't mean it has to be boring!
+**No-as-a-Service** delivers random, witty, and often hilarious ways to reject requests—perfect for spicing up rejections in your applications, bots, or daily life. Just because you're declining, doesn't mean it has to be boring!
 
 <br>
 
 ## 🌐 Public API Endpoint
-Use the service here:  
-https://naas.debugme.dev/no
+### 🧪 Try It Live
+- https://naas.debugme.dev/no  
+- `GET https://naas.debugme.dev/no`
 
 The API returns a JSON with your random rejection reason. That’s it—simple, fast, and ready to help you reject anything.
 
-### 🧪 Example Response
+#### Example Response
 ```
 {
    "reason": "I ran this request through my internal compliance, and it failed."
 }
 ```
 *Rate limited: 120 requests per minute per IP*
+
+<br>
+
+### 📱 Use an iOS/Apple "Shortcut"
+[Shortcuts](https://support.apple.com/guide/shortcuts/welcome/ios) is an Apple app that lets you automate tasks across apps and system functions using custom or prebuilt workflows.
+
+Build your own or use my prebuilt workflow below:
+1. From your iPhone or Mac, download [NaaS.shortcut](assets/ios-shortcut/NaaS-v1.shortcut).
+2. Open the file and select "Add Shortcut" when prompoted.
+   - After adding, you can edit the workflow to review it or "Add to Home Screen".
 
 <br>
 
@@ -50,7 +61,7 @@ docker run -p 8080:80 ghcr.io/claytonfuselier/no-as-a-service:latest
 ```
 Then access the API at: `http://localhost:8080/no`.
 
-You can also run locally using:
+You can also run it locally using:
 ```
 git clone https://github.com/claytonfuselier/no-as-a-service.git
 cd no-as-a-service
@@ -71,7 +82,7 @@ Add your own rejections to keep the API fresh and fun.
 
 ## 👤 Authors
 - [hotheadhacker](https://github.com/hotheadhacker) - Original concept and implementation
-- [claytonfuselier](https://github.com/claytonfuselier)
+- [claytonfuselier](https://github.com/claytonfuselier) - Docker containerization and personal styling
 
 <br>
 

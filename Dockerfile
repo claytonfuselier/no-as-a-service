@@ -4,12 +4,12 @@ FROM node:18
 # Set working directory
 WORKDIR /app
 
-# Install dependencies
-COPY package*.json ./
+# Copy package files and install dependencies
+COPY naas/package*.json ./
 RUN npm install --production
 
-# Copy source code
-COPY . .
+# Copy app source code
+COPY naas/ ./
 
 # Expose the app port (adjust if needed)
 EXPOSE 3000
