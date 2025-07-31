@@ -33,7 +33,7 @@ app.use(limiter);
 
 // Redirect root path to GitHub
 app.get('/', (req, res) => {
-  res.redirect('https://github.com/claytonfuselier/no-as-a-service');
+  res.redirect('https://github.com/claytonfuselier/no-as-a-service/tree/main?tab=readme-ov-file#no-as-a-service');
 });
 
 // Random rejection reason endpoint
