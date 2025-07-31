@@ -1,0 +1,11 @@
+{
+  "enableDiscordBot": true,
+  "discordBotToken": "YOUR_DISCORD_BOT_TOKEN_HERE",
+  "discordBotName": "NoBot",
+  "apiUrl": "https://naas.debugme.dev/no",
+  "apiWebsite": "https://naas.debugme.dev",
+  "rateLimit": {
+    "requestsPerMinute": 10
+  },
+  "redirectRootToDocs": true
+}
