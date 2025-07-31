@@ -1,6 +1,6 @@
 {
-  "discordBot": {
-    "enabled": false,
+  "discord": {
+    "botEnabled": false,
     "botToken": "YOUR_DISCORD_BOT_TOKEN_HERE",
     "botName": "NoBot"
   },
