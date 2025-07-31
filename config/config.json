@@ -1,11 +1,18 @@
 {
-  "enableDiscordBot": true,
-  "discordBotToken": "YOUR_DISCORD_BOT_TOKEN_HERE",
-  "discordBotName": "NoBot",
-  "apiUrl": "https://naas.debugme.dev/no",
-  "apiWebsite": "https://naas.debugme.dev",
-  "rateLimit": {
-    "requestsPerMinute": 10
+  "discordBot": {
+    "enabled": false,
+    "botToken": "YOUR_DISCORD_BOT_TOKEN_HERE",
+    "botName": "NoBot"
   },
-  "redirectRootToDocs": true
+  "api": {
+    "endpoint": "/no",
+    "rateLimit": {
+      "requests": 120,
+      "windowSec": 60,
+    },
+    "redirectRoot": {
+      "enabled": true,
+      "destination": "https://github.com/claytonfuselier/no-as-a-service?tab=readme-ov-file#no-as-a-service"
+    }
+  }
 }
