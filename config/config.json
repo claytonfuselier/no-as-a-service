@@ -8,8 +8,12 @@
   "api": {
     "endpoint": "/no",
     "rateLimit": {
-      "requests": 120,
-      "windowSec": 60,
+      "timeWindow": 60,
+      "default": 120,
+      "specialRate": [
+        "127.0.0.1": 1000,
+        "1.1.1.1": 500
+      ]
     },
     "redirectRoot": {
       "enabled": true,
