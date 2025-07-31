@@ -4,7 +4,6 @@
     "token": "YOUR_DISCORD_BOT_TOKEN_HERE",
     "name": "YOUR_BOT_NAME",
     "embedUrl": "https://naas.debugme.dev"
-    }
   },
   "api": {
     "endpoint": "/no",
