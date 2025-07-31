@@ -5,11 +5,11 @@ FROM node:22
 WORKDIR /app
 
 # Copy package files and install dependencies
-COPY naas/package*.json ./
+COPY naas-api/package*.json ./
 RUN npm install --production
 
 # Copy app source code
-COPY naas/ ./
+COPY naas-api/ ./
 
 # Expose the app port (adjust if needed)
 EXPOSE 3000
