@@ -88,3 +88,45 @@ Add your own rejections to keep the API fresh and fun.
 
 ## 📄 License
 This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+## 🤖 Discord Bot (optional)
+
+This project includes an optional [Discord bot](./naas-discord-bot) that responds with excuses from the API when @mentioned.
+
+### 🔧 Configuration
+
+All bot and API settings are managed through [`config/config.json`](./config/config.json). If the file doesn't exist, a default one is created automatically.
+
+Example:
+
+```json
+{
+  "enableDiscordBot": true,
+  "discordBotToken": "YOUR_DISCORD_BOT_TOKEN_HERE",
+  "discordBotName": "NoBot",
+  "apiUrl": "https://naas.debugme.dev/no",
+  "apiWebsite": "https://naas.debugme.dev",
+  "rateLimit": {
+    "requestsPerMinute": 10
+  },
+  "redirectRootToDocs": true
+}
+```
+
+Set `"enableDiscordBot": false` to disable the bot entirely.
+
+### 🐳 Running the Bot (Docker)
+
+Build and run the bot container:
+
+```bash
+docker build -t naas-discord-bot ./naas-discord-bot
+docker run --rm \
+  -v $(pwd)/config:/app/config \
+  naas-discord-bot
+```
+
+This mounts the shared `naas/config.json` into the bot container.
+
