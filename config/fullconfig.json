@@ -8,16 +8,16 @@
   "api": {
     "endpoint": "/no",
     "rateLimit": {
-      "timeWindow": 60,
-      "default": 120,
-      "specialRate": [
+      "seconds": 60,
+      "requests": 120,
+      "overrides": {
         "127.0.0.1": 1000,
         "1.1.1.1": 500
-      ]
+      }
     },
     "redirectRoot": {
       "enabled": true,
-      "destination": "https://github.com/claytonfuselier/no-as-a-service?tab=readme-ov-file#no-as-a-service"
+      "destination": "https://github.com/claytonfuselier/no-as-a-service/blob/main/README.md#no-as-a-service"
     }
   }
 }
