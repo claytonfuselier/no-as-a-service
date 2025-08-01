@@ -9,7 +9,7 @@ COPY naas-api/package*.json ./
 RUN npm ci --production
 
 # Copy app source code
-COPY naas-api/ ./
+COPY app/ ./
 
 # Expose the app port (adjust if needed)
 EXPOSE 3000
