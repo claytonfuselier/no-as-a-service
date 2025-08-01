@@ -15,15 +15,15 @@ const RATE_LIMIT_OVERRIDES = (() => {
     return {};
   }
 })();
-const REDIRECT_ROOT_ENABLED = process.env.REDIRECT_ROOT_ENABLED || true;  // Fallback to true
+const REDIRECT_ROOT_ENABLED = process.env.REDIRECT_ROOT_ENABLED !== 'false';  // Fallback to true
 const REDIRECT_ROOT_DEST = process.env.REDIRECT_ROOT_DEST || 'https://github.com/claytonfuselier/no-as-a-service/blob/main/README.md#no-as-a-service'; // Fallback to my github repo
-}
+
 
 const app = express();
 app.set('trust proxy', true);
 
-const callerIp = req.headers['cf-connecting-ip'] || req.ip; // Fallback if CF header is missing (or for non-CloudFlare connections)
 
+// Read reasons.json
 let reasons = [];
 try {
   reasons = JSON.parse(fs.readFileSync('./reasons.json', 'utf-8'));  // Load reasons from JSON
@@ -33,19 +33,15 @@ try {
   process.exit(1);
 }
 
+
 // Rate limiter
 const limiter = rateLimit({
   windowMs: RATE_LIMIT_SECONDS * 1000,  // Convert RATE_LIMIT_SECONDS (secondss) to ms
   max: (req, res) => {
-    if (RATE_LIMIT_OVERRIDES[callerIp]) {  // Check for a custom rate override for the IP
-      return RATE_LIMIT_OVERRIDES[callerIp];
-    }
-    return RATE_LIMIT_REQUESTS;  // Fallback the global rate limit
+    const ip = req.headers['cf-connecting-ip'] || req.ip;  
+    return RATE_LIMIT_OVERRIDES[ip] || RATE_LIMIT_REQUESTS;  // Fallback to global rate limit if IP has no override
   },
-  keyGenerator: (req, res) => {
-    return callerIp
-  },
-},
+  keyGenerator: (req, res) => req.headers['cf-connecting-ip'] || req.ip,  // Fallback if CF header is missing (or for non-CloudFlare connections)
   standardHeaders: true,  // Includes standardized RateLimit-* headers (RFC-compliant)
   legacyHeaders: false,  // Removes outdated headers like X-RateLimit-*
   handler: (req, res) => {
@@ -76,5 +72,5 @@ app.get(API_ENDPOINT, (req, res) => {
 
 // Start server
 app.listen(LISTENING_PORT, () => {
-  console.log(`No-as-a-Service is running on port ${PORT}`);
+  console.log(`No-as-a-Service is running on port ${LISTENING_PORT}`);
 });
