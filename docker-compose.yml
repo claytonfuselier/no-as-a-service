@@ -1,0 +1,9 @@
+services:
+  no-as-a-service:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    container_name: no-as-a-service
+    ports:
+      - "8080:3000"
+    restart: unless-stopped
