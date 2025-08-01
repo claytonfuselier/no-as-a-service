@@ -6,4 +6,13 @@ services:
     container_name: no-as-a-service
     ports:
       - "8080:3000"
+    environment:
+      # Options environment parameters
+      - LISTEN_PORT=3000
+      - API_ENDPOINT='/no'
+      - RATE_LIMIT_REQUESTS=120
+      - RATE_LIMIT_SECONDS=60
+      - RATE_LIMIT_OVERRIDES='{"127.0.0.1":1000}'
+      - REDIRECT_ROOT_ENABLED='true'
+      - REDIRECT_ROOT_DEST='https://github.com/claytonfuselier'
     restart: unless-stopped
