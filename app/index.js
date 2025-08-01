@@ -22,7 +22,7 @@ const RATE_LIMIT_OVERRIDES = (() => {
   }
 })();
 const REDIRECT_ROOT_ENABLED = process.env.REDIRECT_ROOT_ENABLED !== 'false';  // Fallback to true
-const REDIRECT_ROOT_DEST = process.env.REDIRECT_ROOT_DEST || 'https://github.com/claytonfuselier/no-as-a-service/blob/main/README.md#no-as-a-service'; // Fallback to my github repo
+const REDIRECT_ROOT_DEST = process.env.REDIRECT_ROOT_DEST || 'https://github.com/claytonfuselier/no-as-a-service#no-as-a-service'; // Fallback to my github repo
 
 
 const app = express();
@@ -43,7 +43,11 @@ try {
 // Log requests to the console
 function logRequest(req, res, logMsg = '') {
   const ip = req.headers['cf-connecting-ip'] || req.ip || 'unknown';
-  const now = new Date().toISOString().replace('T', ' ').split('.')[0];
+  //const now = new Date().toISOString().replace('T', ' ').split('.')[0];
+  const now = new Date().toLocaleString('sv-SE', {  // Using 'sc-SE' uses ISO format for datetime
+    timeZone: process.env.TZ || 'UTC',  // Fallback to UTC if TZ environment parameter is not provided
+    hour12: false
+  });
   const status = res.statusCode;
   console.log(`[${now}] ${status} ${req.method} ${req.originalUrl} — IP: ${ip} ${logMsg}`);
 }
@@ -99,7 +103,18 @@ app.use((err, req, res, next) => {
 
 // Start server
 app.listen(LISTEN_PORT, () => {
-  console.log('No-as-a-Service (NaaS) - devleoped by claytonfuselier')
-  console.log('For more info: https://github.com/claytonfuselier/no-as-a-service\n')
-  console.log(`Running NaaS v${version} on port ${LISTEN_PORT}...`);
+  console.log(`Application:
+  ▸ No-as-a-Service (NaaS) - v${version}
+  ▸ Devleoped by claytonfuselier
+  ▸ https://github.com/claytonfuselier/no-as-a-service
+  `);
+  console.log(`Configuration:
+  ▸ Port:                 ${LISTEN_PORT}
+  ▸ API Endpoint:         ${API_ENDPOINT}
+  ▸ Root Redirect:        ${REDIRECT_ROOT_ENABLED ? 'Enabled' : 'Disabled'}
+  ▸ Redirect Destination: ${REDIRECT_ROOT_DEST}
+  ▸ Rate Limit:           ${RATE_LIMIT_REQUESTS} requests / ${RATE_LIMIT_SECONDS} seconds
+  ▸ Rate Limit Overrides: ${JSON.stringify(RATE_LIMIT_OVERRIDES)}
+  `);
+  console.log(`Running on port ${LISTEN_PORT}...`);
 });
