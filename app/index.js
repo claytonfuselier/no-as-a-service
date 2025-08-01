@@ -9,7 +9,7 @@ const fs = require('fs');
 // Get app version
 const { version } = require('./package.json');
 // Get environment variables
-const LISTENING_PORT = process.env.LISTENING_PORT || 3000;  // Fallback to port 3000
+const LISTEN_PORT = process.env.LISTEN_PORT || 3000;  // Fallback to port 3000
 const API_ENDPOINT = process.env.API_ENDPOINT || '/no';  // Fallback to '/no'
 const RATE_LIMIT_REQUESTS = parseInt(process.env.RATE_LIMIT_REQUESTS || '120', 10);  // Fallback to 120 requests
 const RATE_LIMIT_SECONDS = parseInt(process.env.RATE_LIMIT_SECONDS || '60', 10);  // Fallback to 60 seconds
@@ -41,11 +41,11 @@ try {
 
 
 // Log requests to the console
-function logRequest(req, res, reason = '') {
+function logRequest(req, res, logMsg = '') {
   const ip = req.headers['cf-connecting-ip'] || req.ip || 'unknown';
   const now = new Date().toISOString().replace('T', ' ').split('.')[0];
   const status = res.statusCode;
-  console.log(`[${now}] ${status} ${req.method} ${req.originalUrl} — IP: ${ip} — Reason: "${reason}"`);
+  console.log(`[${now}] ${status} ${req.method} ${req.originalUrl} — IP: ${ip} ${logMsg}`);
 }
 
 
@@ -74,10 +74,11 @@ app.use(limiter);
 app.get('/', (req, res) => {
   if (REDIRECT_ROOT_ENABLED) {
     res.redirect(REDIRECT_ROOT_DEST);  // Redirect root path
+    logRequest(req, res, ` - Redirected: ${REDIRECT_ROOT_DEST}`);
   } else {
     res.send("No-as-a-Service (NaaS) - created by [claytonfuselier](https://github.com/claytonfuselier/no-as-a-service)");
+    logRequest(req, res);
   }
-  logRequest(req, res);
 });
 
 
@@ -85,7 +86,7 @@ app.get('/', (req, res) => {
 app.get(API_ENDPOINT, (req, res) => {
   const reason = reasons[Math.floor(Math.random() * reasons.length)];
   res.json({ reason });
-  logRequest(req, res, reason);
+  logRequest(req, res, ` - Reason: ${reason}`);
 });
 
 
@@ -97,8 +98,8 @@ app.use((err, req, res, next) => {
 
 
 // Start server
-app.listen(LISTENING_PORT, () => {
+app.listen(LISTEN_PORT, () => {
   console.log('No-as-a-Service (NaaS) - devleoped by claytonfuselier')
   console.log('For more info: https://github.com/claytonfuselier/no-as-a-service\n')
-  console.log(`Running NaaS v${version} on port ${LISTENING_PORT}...`);
+  console.log(`Running NaaS v${version} on port ${LISTEN_PORT}...`);
 });
