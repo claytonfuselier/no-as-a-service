@@ -1,7 +1,7 @@
 {
   "name": "no-as-a-service",
   "version": "2.0.0",
-  "description": "An API that returns random rejections.",
+  "description": "An API that returns random rejection reasons.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
