@@ -1,0 +1,11 @@
+# Ignore the following in any path:
+**/node_modules/
+**/.env
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+
+# Ignore common IDE/editor folders
+**/.vscode/
+**/.DS_Store
+**/Thumbs.db
