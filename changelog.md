@@ -7,6 +7,7 @@
    - **Express** from 4.18.2 to **5.1.0**
    - **express-rate-limit** from 7.0.0 to **8.0.1**
 - Switched to environment-based configuration with internal fallbacks (stateless runtime)
+- Added simple logging to console output
 - Improved error handling:
    - App exits on malformed `reasons.json`
    - Global error middleware added for Express 5
