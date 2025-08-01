@@ -64,7 +64,7 @@ Then access the API at: `http://localhost:8080/no`
 You can also run it locally using:
 ```
 git clone https://github.com/claytonfuselier/no-as-a-service.git
-cd no-as-a-service/naas
+cd no-as-a-service/app
 npm install
 npm start
 ```
