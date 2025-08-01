@@ -43,7 +43,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/${{ github.repository }}:${{ steps.tag.outputs.tag }} ./naas
+          docker build -t ghcr.io/${{ github.repository }}:${{ steps.tag.outputs.tag }} ./app
 
       - name: Push Docker image
         run: |
