@@ -1,5 +1,6 @@
 const express = require('express');
-const rateLimit = require('express-rate-limit');
+const rawRateLimit = require('express-rate-limit');
+const rateLimit = rawRateLimit.default || rawRateLimit;
 const fs = require('fs');
 
 // Get environment variables
@@ -36,7 +37,7 @@ try {
 
 // Rate limiter
 const limiter = rateLimit({
-  windowMs: RATE_LIMIT_SECONDS * 1000,  // Convert RATE_LIMIT_SECONDS (secondss) to ms
+  windowMs: RATE_LIMIT_SECONDS * 1000,  // Convert RATE_LIMIT_SECONDS (seconds) to ms
   max: (req, res) => {
     const ip = req.headers['cf-connecting-ip'] || req.ip;  
     return RATE_LIMIT_OVERRIDES[ip] || RATE_LIMIT_REQUESTS;  // Fallback to global rate limit if IP has no override
@@ -50,9 +51,6 @@ const limiter = rateLimit({
     });
   }
 });
-
-
-
 app.use(limiter);
 
 // Root endpoint
@@ -68,6 +66,12 @@ app.get('/', (req, res) => {
 app.get(API_ENDPOINT, (req, res) => {
   const reason = reasons[Math.floor(Math.random() * reasons.length)];
   res.json({ reason });
+});
+
+// Global error handler for Express 5
+app.use((err, req, res, next) => {
+  console.error('Unhandled error:', err);
+  res.status(500).json({ error: 'Internal server error' });
 });
 
 // Start server
