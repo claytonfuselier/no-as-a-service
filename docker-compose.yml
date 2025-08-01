@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  naas-api:
+    build: ./naas-api
+    ports:
+      - "3000:3000"
+    environment:
+      API_ENDPOINT: "/no"
+      RATE_LIMIT_REQUESTS: 120
+      RATE_LIMIT_SECONDS: 60
+      REDIRECT_ROOT_ENABLED: "true"
+      REDIRECT_ROOT_DEST: "https://github.com/claytonfuselier/no-as-a-service?tab=readme-ov-file#no-as-a-service"
+
+  naas-discord-bot:
+    build: ./naas-discord-bot
+    depends_on:
+      - naas-api
+    environment:
+      DISCORD_BOT_ENABLED: "true"
+      DISCORD_BOT_TOKEN: "your-bot-token-here"
+      DISCORD_BOT_NAME: "NoBot"
+      DISCORD_BOT_EMBED_URL: "https://naas.debugme.dev"
+      NAAS_API_URL: "http://naas-api:3000/no"

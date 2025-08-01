@@ -129,4 +129,65 @@ docker run --rm \
 ```
 
 This mounts the shared `naas/config.json` into the bot container.
+---
 
+## 🛠 Environment Variables
+
+This project is now fully **stateless**. All configuration is passed through environment variables.
+
+### 📦 Discord Bot Variables
+
+| Variable              | Description                         | Required | Default |
+|-----------------------|-------------------------------------|----------|---------|
+| `DISCORD_BOT_ENABLED` | Enable the Discord bot (`true/false`) | Yes      | —       |
+| `DISCORD_BOT_TOKEN`   | Discord bot token                   | Yes      | —       |
+| `DISCORD_BOT_NAME`    | Bot display name                    | No       | `NoBot` |
+| `DISCORD_BOT_EMBED_URL` | Footer link in embeds              | No       | `https://naas.debugme.dev` |
+| `NAAS_API_URL`        | Full URL to the NaaS API endpoint   | Yes      | —       |
+
+### 🌐 API Service Variables
+
+| Variable                  | Description                              | Required | Default |
+|---------------------------|------------------------------------------|----------|---------|
+| `PORT`                    | Port to run the API server on            | No       | `3000`  |
+| `API_ENDPOINT`            | Path segment for the excuse API          | No       | `/no`   |
+| `RATE_LIMIT_REQUESTS`     | Default max requests per IP              | No       | `120`   |
+| `RATE_LIMIT_SECONDS`      | Time window for rate limiting (seconds)  | No       | `60`    |
+| `RATE_LIMIT_OVERRIDES`    | JSON object of IP-to-limit overrides     | No       | `{}`    |
+| `REDIRECT_ROOT_ENABLED`   | Redirect root path to a URL (`true/false`) | No     | `true`  |
+| `REDIRECT_ROOT_DEST`      | URL to redirect `/` to                   | No       | GitHub README |
+
+Example `RATE_LIMIT_OVERRIDES`:
+```bash
+RATE_LIMIT_OVERRIDES='{"127.0.0.1": 1000, "1.2.3.4": 500}'
+```
+
+---
+
+## 🐳 Running with Docker
+
+### Discord Bot:
+
+```bash
+docker build -t naas-discord-bot ./naas-discord-bot
+docker run --rm \
+  -e DISCORD_BOT_ENABLED=true \
+  -e DISCORD_BOT_TOKEN=your-bot-token \
+  -e DISCORD_BOT_NAME=NoBot \
+  -e DISCORD_BOT_EMBED_URL=https://naas.debugme.dev \
+  -e NAAS_API_URL=http://localhost:3000/no \
+  naas-discord-bot
+```
+
+### API:
+
+```bash
+docker build -t naas-api ./naas-api
+docker run --rm -p 3000:3000 \
+  -e API_ENDPOINT=/no \
+  -e RATE_LIMIT_REQUESTS=120 \
+  -e RATE_LIMIT_SECONDS=60 \
+  -e REDIRECT_ROOT_ENABLED=true \
+  -e REDIRECT_ROOT_DEST=https://github.com/claytonfuselier/no-as-a-service \
+  naas-api
+```
