@@ -1,9 +1,13 @@
+// Core
 const express = require('express');
 const rawRateLimit = require('express-rate-limit');
 const rateLimit = rawRateLimit.default || rawRateLimit;  // Used because limit is applied globally, not per route as v5 would expect.
 const ipKeyGenerator = rawRateLimit.ipKeyGenerator || (rawRateLimit.default && rawRateLimit.default.ipKeyGenerator);  // Needed to normalize IPs to satisfy Express v5 security validation
 const fs = require('fs');
 
+
+// Get app version
+const { version } = require('./package.json');
 // Get environment variables
 const LISTENING_PORT = process.env.LISTENING_PORT || 3000;  // Fallback to port 3000
 const API_ENDPOINT = process.env.API_ENDPOINT || '/no';  // Fallback to '/no'
@@ -36,11 +40,20 @@ try {
 }
 
 
+// Log requests to the console
+function logRequest(req, res, reason = '') {
+  const ip = req.headers['cf-connecting-ip'] || req.ip || 'unknown';
+  const now = new Date().toISOString().replace('T', ' ').split('.')[0];
+  const status = res.statusCode;
+  console.log(`[${now}] ${status} ${req.method} ${req.originalUrl} — IP: ${ip} — Reason: "${reason}"`);
+}
+
+
 // Rate limiter
 const limiter = rateLimit({
   windowMs: RATE_LIMIT_SECONDS * 1000,  // Convert RATE_LIMIT_SECONDS (seconds) to ms
   max: (req, res) => {
-    const ip = req.headers['cf-connecting-ip'] || req.ip;  
+    const ip = req.headers['cf-connecting-ip'] || ipKeyGenerator(req);  
     return RATE_LIMIT_OVERRIDES[ip] || RATE_LIMIT_REQUESTS;  // Fallback to global rate limit if IP has no override
   },
   keyGenerator: (req, res) => {
@@ -56,20 +69,25 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
-// Root endpoint
+
+// Root route
 app.get('/', (req, res) => {
   if (REDIRECT_ROOT_ENABLED) {
     res.redirect(REDIRECT_ROOT_DEST);  // Redirect root path
   } else {
     res.send("No-as-a-Service (NaaS) - created by [claytonfuselier](https://github.com/claytonfuselier/no-as-a-service)");
   }
+  logRequest(req, res);
 });
+
 
 // NaaS endpoint
 app.get(API_ENDPOINT, (req, res) => {
   const reason = reasons[Math.floor(Math.random() * reasons.length)];
   res.json({ reason });
+  logRequest(req, res, reason);
 });
+
 
 // Global error handler for Express 5
 app.use((err, req, res, next) => {
@@ -77,7 +95,10 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Internal server error' });
 });
 
+
 // Start server
 app.listen(LISTENING_PORT, () => {
-  console.log(`No-as-a-Service is running on port ${LISTENING_PORT}`);
+  console.log('No-as-a-Service (NaaS) - devleoped by claytonfuselier')
+  console.log('For more info: https://github.com/claytonfuselier/no-as-a-service\n')
+  console.log(`Running NaaS v${version} on port ${LISTENING_PORT}...`);
 });
