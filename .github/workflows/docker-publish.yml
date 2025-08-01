@@ -7,7 +7,6 @@ on:
     paths-ignore:      # Won't trigger workflow if only these files are edited
       - '.github/**'
       - 'assets/**'
-      - 'docs/**'
       - '**/*.md'
       
   workflow_dispatch:   # Allow manual build for any branch
@@ -44,7 +43,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/${{ github.repository }}:${{ steps.tag.outputs.tag }} .
+          docker build -t ghcr.io/${{ github.repository }}:${{ steps.tag.outputs.tag }} ./naas
 
       - name: Push Docker image
         run: |
