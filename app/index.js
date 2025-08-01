@@ -1,6 +1,7 @@
 const express = require('express');
 const rawRateLimit = require('express-rate-limit');
-const rateLimit = rawRateLimit.default || rawRateLimit;
+const rateLimit = rawRateLimit.default || rawRateLimit;  // Used because limit is applied globally, not per route as v5 would expect.
+const ipKeyGenerator = rawRateLimit.ipKeyGenerator || (rawRateLimit.default && rawRateLimit.default.ipKeyGenerator);  // Needed to normalize IPs to satisfy Express v5 security validation
 const fs = require('fs');
 
 // Get environment variables
@@ -42,7 +43,9 @@ const limiter = rateLimit({
     const ip = req.headers['cf-connecting-ip'] || req.ip;  
     return RATE_LIMIT_OVERRIDES[ip] || RATE_LIMIT_REQUESTS;  // Fallback to global rate limit if IP has no override
   },
-  keyGenerator: (req, res) => req.headers['cf-connecting-ip'] || req.ip,  // Fallback if CF header is missing (or for non-CloudFlare connections)
+  keyGenerator: (req, res) => {
+    req.headers['cf-connecting-ip'] || ipKeyGenerator(req);  // Fallback if CF header is missing (or for non-CloudFlare connections)
+  },  
   standardHeaders: true,  // Includes standardized RateLimit-* headers (RFC-compliant)
   legacyHeaders: false,  // Removes outdated headers like X-RateLimit-*
   handler: (req, res) => {
