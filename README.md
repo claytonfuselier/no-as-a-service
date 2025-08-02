@@ -1,5 +1,6 @@
 # No-as-a-Service
-![Version](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/claytonfuselier/no-as-a-service/dev/version.json)
+![Version](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/claytonfuselier/no-as-a-service/refs/heads/dev/app/version.json) ![License](https://img.shields.io/github/license/claytonfuselier/no-as-a-service)
+
 Ever get tired of saying "no"?  
 Wish you could reject requests with more flair, creativity, or sarcasm?
 
