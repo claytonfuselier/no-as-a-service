@@ -7,7 +7,7 @@ services:
     ports:
       - "8080:3000"
     environment:
-      TZ: "America/Chicago"
+      TZ: "UTC"
       # Optional - Environment Parameters
       #LISTEN_PORT: 3000
       #API_ENDPOINT: "/nope"
