@@ -8,9 +8,9 @@ services:
       TZ: "UTC"
       # Optional - Environment Parameters
       #LISTEN_PORT: 3000
-      #API_ENDPOINT: "/nope"
-      #RATE_LIMIT_REQUESTS: 200
-      #RATE_LIMIT_SECONDS: 120
+      #API_ENDPOINT: "/no"
+      #RATE_LIMIT_REQUESTS: 120
+      #RATE_LIMIT_SECONDS: 60
       #RATE_LIMIT_OVERRIDES: '{"127.0.0.1":500}'
       #REDIRECT_ROOT_ENABLED: true
       #REDIRECT_ROOT_DEST: "https://github.com/claytonfuselier/no-as-a-service"
