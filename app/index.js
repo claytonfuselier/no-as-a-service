@@ -22,7 +22,7 @@ const RATE_LIMIT_OVERRIDES = (() => {
   }
 })();
 const REDIRECT_ROOT_ENABLED = process.env.REDIRECT_ROOT_ENABLED !== 'false';  // Fallback to true
-const REDIRECT_ROOT_DEST = process.env.REDIRECT_ROOT_DEST || 'https://github.com/claytonfuselier/no-as-a-service#no-as-a-service'; // Fallback to my github repo
+const REDIRECT_ROOT_DEST = process.env.REDIRECT_ROOT_DEST || 'https://github.com/claytonfuselier/no-as-a-service'; // Fallback to my github repo
 
 
 const app = express();
