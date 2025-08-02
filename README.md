@@ -100,7 +100,7 @@ You can configure No-as-a-Service by passing environment variables to the contai
 | `API_ENDPOINT`         | `/no`                                       | Path for the rejection API endpoint.                                       |
 | `RATE_LIMIT_REQUESTS`  | `120`                                       | Max number of requests allowed per IP.                                     |
 | `RATE_LIMIT_SECONDS`   | `60`                                        | Time window (in seconds) for rate limiting.                                |
-| `RATE_LIMIT_OVERRIDES` | `{ "127.0.0.1": 1000 }`                     | JSON object to override rate limits for specific IPs.                      |
+| `RATE_LIMIT_OVERRIDES` | `{ "127.0.0.1": 500 }`                     | JSON object to override rate limits for specific IPs.                      |
 
 <br>
 
