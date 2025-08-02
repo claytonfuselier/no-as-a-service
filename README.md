@@ -1,5 +1,6 @@
 # No-as-a-Service
-![Version](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/claytonfuselier/no-as-a-service/refs/heads/dev/app/version.json) ![License](https://img.shields.io/github/license/claytonfuselier/no-as-a-service)
+[![Version](https://img.shields.io/github/package-json/v/claytonfuselier/no-as-a-service?filename=%2Fnaas%2Fpackage.json)](#) [![License](https://img.shields.io/github/license/claytonfuselier/no-as-a-service)](#)  
+Public API: [![API Status](https://img.shields.io/uptimerobot/status/m801078452-8da69dcd3dbe9b952e490982.svg)](#)
 
 Ever get tired of saying "no"?  
 Wish you could reject requests with more flair, creativity, or sarcasm?
@@ -17,6 +18,7 @@ Wish you could reject requests with more flair, creativity, or sarcasm?
 <br>
 
 ## 🌐 Public API Endpoint
+
 ### 📡 Try It Live
 - https://naas.debugme.dev/no  
 - `GET https://naas.debugme.dev/no`
