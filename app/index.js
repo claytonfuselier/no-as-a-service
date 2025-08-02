@@ -15,10 +15,10 @@ const RATE_LIMIT_REQUESTS = parseInt(process.env.RATE_LIMIT_REQUESTS || '120', 1
 const RATE_LIMIT_SECONDS = parseInt(process.env.RATE_LIMIT_SECONDS || '60', 10);  // Fallback to 60 seconds
 const RATE_LIMIT_OVERRIDES = (() => {
   try {
-    return JSON.parse(process.env.RATE_LIMIT_OVERRIDES || '{}');  // Fallback to empty JSON object, if overrides is undefined/empty
+    return JSON.parse(process.env.RATE_LIMIT_OVERRIDES || '{"127.0.0.1":500}');  // Fallback to empty JSON object, if overrides is undefined/empty
   } catch (err) {  // Catch error if invalid JSON, and fallback to empty JSON object
     console.error('Invalid JSON in \'RATE_LIMIT_OVERRIDES\'. Ignoring.');
-    return {};
+    return {"127.0.0.1":500};
   }
 })();
 const REDIRECT_ROOT_ENABLED = process.env.REDIRECT_ROOT_ENABLED !== 'false';  // Fallback to true

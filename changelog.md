@@ -1,5 +1,12 @@
 # 📝 Changelog
 
+## v2.0.1
+- `README.md`
+   - Added dynamic badges for API satus, project version, license, and fun "NaaS" badge.
+   - Added steps on using dynamic badge from shields.io to display a NaaS reason
+- Added `/app/.env.example` as a sample for local installations
+- Added a fallback override for `127.0.0.1` of 500 request vs the global/default 120
+
 ## v2.0.0
 - Renamed `/naas` to `/app`
 - Upgraded dependencies:

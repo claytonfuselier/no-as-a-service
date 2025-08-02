@@ -1,4 +1,9 @@
 # No-as-a-Service
+[![API Status](https://img.shields.io/uptimerobot/status/m801078452-8da69dcd3dbe9b952e490982.svg)](#)
+[![Version](https://img.shields.io/github/package-json/v/claytonfuselier/no-as-a-service?filename=%2Fapp%2Fpackage.json)](#)
+[![License](https://img.shields.io/github/license/claytonfuselier/no-as-a-service)](#)
+[![NaaS](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fnaas.debugme.dev%2Fno&query=%24.reason&label=NaaS&color=orange)](https://naas.debugme.dev)
+
 Ever get tired of saying "no"?  
 Wish you could reject requests with more flair, creativity, or sarcasm?
 
@@ -39,6 +44,14 @@ Build your own or use my prebuilt workflow below:
 1. From your iOS device or Mac, download [NaaS.shortcut](https://github.com/claytonfuselier/no-as-a-service/raw/refs/heads/main/assets/ios/NaaS.shortcut).
 2. Open the file and select "Add Shortcut" when prompoted.
    - After adding, you can edit the workflow to review it or "Add to Home Screen".
+
+<br>
+
+### 🏷️ Put a Badge on Your Project
+Copy/paste the following into your own readme.md (or other .md file) to add a fun badge with a dynamic rejection:
+```
+[![NaaS](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fnaas.debugme.dev%2Fno&query=%24.reason&label=NaaS&color=orange)](https://naas.debugme.dev)
+```
 
 <br>
 
@@ -87,7 +100,7 @@ You can configure No-as-a-Service by passing environment variables to the contai
 | `API_ENDPOINT`         | `/no`                                       | Path for the rejection API endpoint.                                       |
 | `RATE_LIMIT_REQUESTS`  | `120`                                       | Max number of requests allowed per IP.                                     |
 | `RATE_LIMIT_SECONDS`   | `60`                                        | Time window (in seconds) for rate limiting.                                |
-| `RATE_LIMIT_OVERRIDES` | `{ "127.0.0.1": 1000 }`                     | JSON object to override rate limits for specific IPs.                      |
+| `RATE_LIMIT_OVERRIDES` | `{ "127.0.0.1": 500 }`                     | JSON object to override rate limits for specific IPs.                      |
 
 <br>
 
