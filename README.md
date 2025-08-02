@@ -9,8 +9,6 @@ Wish you could reject requests with more flair, creativity, or sarcasm?
 
 **No-as-a-Service** delivers random, witty, and often hilarious ways to reject requests—perfect for spicing up rejections in your applications, bots, or daily life. Just because you're declining, doesn't mean it has to be boring!
 
-[[_TOC_]]
-
 <br>
 
 ## 🛠️ Use Cases
