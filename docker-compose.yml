@@ -1,11 +1,9 @@
 services:
   no-as-a-service:
-    build:
-      context: ./app
-      dockerfile: Dockerfile
+    image: ghcr.io/claytonfuselier/no-as-a-service:latest
     container_name: no-as-a-service
-    ports:
-      - "8080:3000"
+#    ports:
+#      - "8080:3000"
     environment:
       TZ: "UTC"
       # Optional - Environment Parameters
