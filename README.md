@@ -1,6 +1,10 @@
 # No-as-a-Service
-[![Version](https://img.shields.io/github/package-json/v/claytonfuselier/no-as-a-service?filename=%2Fnaas%2Fpackage.json)](#) [![License](https://img.shields.io/github/license/claytonfuselier/no-as-a-service)](#)  
-Public API: [![API Status](https://img.shields.io/uptimerobot/status/m801078452-8da69dcd3dbe9b952e490982.svg)](#)
+[![Version](https://img.shields.io/github/package-json/v/claytonfuselier/no-as-a-service?filename=%2Fnaas%2Fpackage.json)](#)
+[![License](https://img.shields.io/github/license/claytonfuselier/no-as-a-service)](#)
+[![API Status](https://img.shields.io/uptimerobot/status/m801078452-8da69dcd3dbe9b952e490982.svg)](#)
+[![NaaS Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fupgraded-broccoli-65g9rjpr54q25xq6-3000.app.github.dev%2Fbadge&query=%24.reason&label=NaaS&color=orange)](#)
+
+
 
 Ever get tired of saying "no"?  
 Wish you could reject requests with more flair, creativity, or sarcasm?
