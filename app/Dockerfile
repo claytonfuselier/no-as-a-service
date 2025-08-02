@@ -1,15 +1,15 @@
 # Use Node.js LTS base image
-FROM node:18
+FROM node:22
 
 # Set working directory
 WORKDIR /app
 
 # Copy package files and install dependencies
-COPY naas/package*.json ./
-RUN npm install --production
+COPY package*.json ./
+RUN npm ci --production
 
 # Copy app source code
-COPY naas/ ./
+COPY . .
 
 # Expose the app port (adjust if needed)
 EXPOSE 3000

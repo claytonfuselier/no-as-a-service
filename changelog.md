@@ -1,5 +1,22 @@
 # 📝 Changelog
 
+## v2.0.0
+- Renamed `/naas` to `/app`
+- Upgraded dependencies:
+   - **Node.js** from v18 to **v22**
+   - **Express** from 4.18.2 to **5.1.0**
+   - **express-rate-limit** from 7.0.0 to **8.0.1**
+- Switched to environment-based configuration with internal fallbacks (stateless runtime)
+- Added simple logging to console output
+- Improved error handling:
+   - App exits on malformed `reasons.json`
+   - Global error middleware added for Express 5
+- Docker:
+   - Dockerfile now uses `npm ci` for reproducible builds
+   - Dockerfile relocated to `/app`
+   - Build context minimized by targeting `/app` directly
+- Updated README.md to include additional details and deployment options.
+
 ## v1.2.1
 - Reorganized repository contents. Main package/app related files are now in `naas/`.
 - `README.md:`
