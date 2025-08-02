@@ -15,6 +15,7 @@
    - Dockerfile now uses `npm ci` for reproducible builds
    - Dockerfile relocated to `/app`
    - Build context minimized by targeting `/app` directly
+- Updated README.md to include additional details and deployment options.
 
 ## v1.2.1
 - Reorganized repository contents. Main package/app related files are now in `naas/`.
