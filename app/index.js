@@ -4,10 +4,9 @@ const rawRateLimit = require('express-rate-limit');
 const rateLimit = rawRateLimit.default || rawRateLimit;  // Used because limit is applied globally, not per route as v5 would expect.
 const ipKeyGenerator = rawRateLimit.ipKeyGenerator || (rawRateLimit.default && rawRateLimit.default.ipKeyGenerator);  // Needed to normalize IPs to satisfy Express v5 security validation
 const fs = require('fs');
+const package = require('./package.json');
 
 
-// Get app version
-const { version } = require('./package.json');
 // Get environment variables
 const LISTEN_PORT = process.env.LISTEN_PORT || 3000;  // Fallback to port 3000
 const API_ENDPOINT = process.env.API_ENDPOINT || '/no';  // Fallback to '/no'
@@ -94,10 +93,17 @@ app.get(API_ENDPOINT, (req, res) => {
 });
 
 
-// Version route
-app.get('/version', (req, res) => {
-  res.send("No-as-a-Service (NaaS) - created by [claytonfuselier](https://github.com/claytonfuselier/no-as-a-service)");
-  logRequest(req, res, ` - NaaS v${version}`);
+// Info route
+app.get('/info', (req, res) => {
+  res.json({
+    name: package.name,
+    version: package.version,
+    description: package.description,
+    author: package.author,
+    license: package.license,
+    timestamp: new Date().toISOString()
+  });
+  logRequest(req, res, ` - NaaS v${package.version}`);
 });
 
 
@@ -111,7 +117,7 @@ app.use((err, req, res, next) => {
 // Start server
 app.listen(LISTEN_PORT, () => {
   console.log(`Application:
-  ▸ No-as-a-Service (NaaS) - v${version}
+  ▸ No-as-a-Service (NaaS) - v${package.version}
   ▸ Devleoped by claytonfuselier
   ▸ https://github.com/claytonfuselier/no-as-a-service
   `);
