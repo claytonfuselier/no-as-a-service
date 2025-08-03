@@ -94,6 +94,13 @@ app.get(API_ENDPOINT, (req, res) => {
 });
 
 
+// Version route
+app.get('/version', (req, res) => {
+  res.send("No-as-a-Service (NaaS) - created by [claytonfuselier](https://github.com/claytonfuselier/no-as-a-service)");
+  logRequest(req, res, ` - NaaS v${version}`);
+});
+
+
 // Global error handler for Express 5
 app.use((err, req, res, next) => {
   console.error('Unhandled error:', err);
