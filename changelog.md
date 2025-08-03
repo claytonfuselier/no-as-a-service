@@ -1,5 +1,8 @@
 # 📝 Changelog
 
+## v2.0.2
+- Added route for `/info` to return details from the `package.json` file for debugging
+
 ## v2.0.1
 - `README.md`
    - Added dynamic badges for API satus, project version, license, and fun "NaaS" badge.
