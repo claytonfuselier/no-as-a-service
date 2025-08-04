@@ -1,7 +1,7 @@
 # No-as-a-Service
 [![API Status](https://img.shields.io/uptimerobot/status/m801078452-8da69dcd3dbe9b952e490982.svg)](#)
 [![Version](https://img.shields.io/github/package-json/v/claytonfuselier/no-as-a-service?filename=%2Fapp%2Fpackage.json)](#)
-[![License](https://img.shields.io/github/license/claytonfuselier/no-as-a-service)](#)
+[![License](https://img.shields.io/github/license/claytonfuselier/no-as-a-service)](#)  
 [![NaaS](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fnaas.debugme.dev%2Fno&query=%24.reason&label=NaaS&color=orange)](https://naas.debugme.dev)
 
 Ever get tired of saying "no"?  
