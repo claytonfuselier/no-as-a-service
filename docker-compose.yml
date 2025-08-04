@@ -6,7 +6,7 @@ services:
       - "8080:3000"
     environment:
       TZ: "UTC"
-      # Optional - Environment Parameters
+      # Optional - Environment Variables
       #LISTEN_PORT: 3000
       #API_ENDPOINT: "/no"
       #RATE_LIMIT_REQUESTS: 120
