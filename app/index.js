@@ -97,19 +97,19 @@ app.get('/', (req, res) => {
 });
 
 
-// No endpoint
+// No
 app.get(API_ENDPOINT_NO, (req, res) => {
-  const rejection = noList[Math.floor(Math.random() * noList.length)];
+  const reason = noList[Math.floor(Math.random() * noList.length)];
   res.json({ reason });
-  logRequest(req, res, ` - Reason: ${rejection}`);
+  logRequest(req, res, ` - Reason: ${reason}`);
 });
 
 
-// NoHello endpoint
+// NoHello
 app.get(API_ENDPOINT_NOHELLO, (req, res) => {
   const greeting = noHelloList[Math.floor(Math.random() * noHelloList.length)];
-  res.json({ reason });
-  logRequest(req, res, ` - Reason: ${greeting}`);
+  res.json({ greeting });
+  logRequest(req, res, ` - Greeting: ${greeting}`);
 });
 
 
