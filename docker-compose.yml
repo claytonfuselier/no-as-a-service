@@ -8,7 +8,8 @@ services:
       TZ: "UTC"
       # Optional - Environment Variables
       #LISTEN_PORT: 3000
-      #API_ENDPOINT: "/no"
+      #API_ENDPOINT_NO: "/no"
+      #API_ENDPOINT_NOHELLO: "/nohello"
       #RATE_LIMIT_REQUESTS: 120
       #RATE_LIMIT_SECONDS: 60
       #RATE_LIMIT_OVERRIDES: '{"127.0.0.1":500}'
