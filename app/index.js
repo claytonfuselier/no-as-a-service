@@ -142,12 +142,13 @@ app.listen(LISTEN_PORT, () => {
   ▸ https://github.com/claytonfuselier/no-as-a-service
   `);
   console.log(`Configuration:
-  ▸ Port:                 ${LISTEN_PORT}
-  ▸ API Endpoint:         ${API_ENDPOINT}
-  ▸ Root Redirect:        ${REDIRECT_ROOT_ENABLED ? 'Enabled' : 'Disabled'}
-  ▸ Redirect Destination: ${REDIRECT_ROOT_DEST}
-  ▸ Rate Limit:           ${RATE_LIMIT_REQUESTS} requests / ${RATE_LIMIT_SECONDS} seconds
-  ▸ Rate Limit Overrides: ${JSON.stringify(RATE_LIMIT_OVERRIDES)}
+  ▸ Port:                    ${LISTEN_PORT}
+  ▸ API Endpoint (no):       ${API_ENDPOINT_NO}
+  ▸ API Endpoint (nohello):  ${API_ENDPOINT_NO}
+  ▸ Root Redirect:           ${REDIRECT_ROOT_ENABLED ? 'Enabled' : 'Disabled'}
+  ▸ Redirect Destination:    ${REDIRECT_ROOT_DEST}
+  ▸ Rate Limit:              ${RATE_LIMIT_REQUESTS} requests / ${RATE_LIMIT_SECONDS} seconds
+  ▸ Rate Limit Overrides:    ${JSON.stringify(RATE_LIMIT_OVERRIDES)}
   `);
   console.log(`Running on port ${LISTEN_PORT}...`);
 });
