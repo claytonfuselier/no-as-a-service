@@ -9,7 +9,8 @@ const package = require('./package.json');
 
 // Get environment variables
 const LISTEN_PORT = process.env.LISTEN_PORT || 3000;  // Fallback to port 3000
-const API_ENDPOINT = process.env.API_ENDPOINT || '/no';  // Fallback to '/no'
+const API_ENDPOINT_NO = process.env.API_ENDPOINT_NO || '/no';  // Fallback to '/no'
+const API_ENDPOINT_NOHELLO = process.env.API_ENDPOINT_NOHELLO || '/nohello';  // Fallback to '/nohello'
 const RATE_LIMIT_REQUESTS = parseInt(process.env.RATE_LIMIT_REQUESTS || '120', 10);  // Fallback to 120 requests
 const RATE_LIMIT_SECONDS = parseInt(process.env.RATE_LIMIT_SECONDS || '60', 10);  // Fallback to 60 seconds
 const RATE_LIMIT_OVERRIDES = (() => {
@@ -28,13 +29,24 @@ const app = express();
 app.set('trust proxy', true);
 
 
-// Read reasons.json
-let reasons = [];
+// Read no.json
+let noList = [];
 try {
-  reasons = JSON.parse(fs.readFileSync('./reasons.json', 'utf-8'));  // Load reasons from JSON
-} catch (err) {                                                      // Catch error if invalid JSON in reasons.json
-  console.error('❌ Failed to load or parse reasons.json:', err.message);
-  //reasons = [{ reason: 'Error: Something went wrong trying to read the list of reasons... but I’m still avoiding responsibility.' }];
+  noList = JSON.parse(fs.readFileSync('./no.json', 'utf-8'));  // Load rejection reasons from JSON
+} catch (err) {                                                      // Catch error if invalid JSON in no.json
+  console.error('❌ Failed to load or parse no.json:', err.message);
+  noList = [{ reason: 'Error: Something went wrong trying to read the list of reasons... but I’m still avoiding responsibility.' }];
+  process.exit(1);
+}
+
+
+// Read nohello.json
+let noHelloList = [];
+try {
+  noHelloList = JSON.parse(fs.readFileSync('./nohello.json', 'utf-8'));  // Load nohello responses from JSON
+} catch (err) {                                                      // Catch error if invalid JSON in nohello.json
+  console.error('❌ Failed to load or parse nohello.json:', err.message);
+  noHelloList = [{ reason: 'Error: Something went wrong trying to read the nohello responses... so I\'ll just ignore you instead.' }];
   process.exit(1);
 }
 
@@ -85,11 +97,19 @@ app.get('/', (req, res) => {
 });
 
 
-// NaaS endpoint
-app.get(API_ENDPOINT, (req, res) => {
-  const reason = reasons[Math.floor(Math.random() * reasons.length)];
+// No
+app.get(API_ENDPOINT_NO, (req, res) => {
+  const reason = noList[Math.floor(Math.random() * noList.length)];
   res.json({ reason });
   logRequest(req, res, ` - Reason: ${reason}`);
+});
+
+
+// NoHello
+app.get(API_ENDPOINT_NOHELLO, (req, res) => {
+  const greeting = noHelloList[Math.floor(Math.random() * noHelloList.length)];
+  res.json({ greeting });
+  logRequest(req, res, ` - Greeting: ${greeting}`);
 });
 
 
@@ -122,12 +142,13 @@ app.listen(LISTEN_PORT, () => {
   ▸ https://github.com/claytonfuselier/no-as-a-service
   `);
   console.log(`Configuration:
-  ▸ Port:                 ${LISTEN_PORT}
-  ▸ API Endpoint:         ${API_ENDPOINT}
-  ▸ Root Redirect:        ${REDIRECT_ROOT_ENABLED ? 'Enabled' : 'Disabled'}
-  ▸ Redirect Destination: ${REDIRECT_ROOT_DEST}
-  ▸ Rate Limit:           ${RATE_LIMIT_REQUESTS} requests / ${RATE_LIMIT_SECONDS} seconds
-  ▸ Rate Limit Overrides: ${JSON.stringify(RATE_LIMIT_OVERRIDES)}
+  ▸ Port:                    ${LISTEN_PORT}
+  ▸ API Endpoint (no):       ${API_ENDPOINT_NO}
+  ▸ API Endpoint (nohello):  ${API_ENDPOINT_NO}
+  ▸ Root Redirect:           ${REDIRECT_ROOT_ENABLED ? 'Enabled' : 'Disabled'}
+  ▸ Redirect Destination:    ${REDIRECT_ROOT_DEST}
+  ▸ Rate Limit:              ${RATE_LIMIT_REQUESTS} requests / ${RATE_LIMIT_SECONDS} seconds
+  ▸ Rate Limit Overrides:    ${JSON.stringify(RATE_LIMIT_OVERRIDES)}
   `);
   console.log(`Running on port ${LISTEN_PORT}...`);
 });

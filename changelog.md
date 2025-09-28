@@ -1,5 +1,10 @@
 # 📝 Changelog
 
+## v3.0.0 - Introducing /nohello
+- Added new endpoint for `/nohello` to provide responses for chat messages that start with "hello" and then wait till you respond to state what they need or want. Inspired by https://nohello.org/.
+- **Breaking Changes**
+   - Environment parameter `API_ENDPOINT` has been renamed to `API_ENDPOINT_NO`. Be sure to update your docker run/compose accordingly.
+
 ## v2.0.2
 - Added route for `/info` to return details from the `package.json` file for debugging
 
